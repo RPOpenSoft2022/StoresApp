@@ -150,7 +150,6 @@ def addMenuItem(request):
             return Response({"messages":"Successful"},status=status.HTTP_201_CREATED)
 
         return Response({"msg":"Failure","error":serializer.errors},status=status.HTTP_400_BAD_REQUEST)
-
     elif request.method == 'GET':
         storeMenu = StoreMenu.objects.all()
         serializer=StoreMenuSerializer(storeMenu ,many=True)
