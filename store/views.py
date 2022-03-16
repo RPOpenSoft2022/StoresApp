@@ -173,12 +173,13 @@ def itemRating(request):
 
 @api_view(['POST'])
 def validationQuantity(request):
-    serializer =StoreMenuSerializer(data=request.data)
+    serializer =StoreMenuSerializer(data=request.data, many=True)
     if serializer.is_valid():
-        storeMenu=StoreMenu.objects.get(store=serializer.validated_data['store'],item=serializer.validated_data['item'])
-        if storeMenu.quantity-serializer.validated_data['quantity'] < 0:
-            return Response(False, status=status.HTTP_400_BAD_REQUEST)
-        return Response(True,status=status.HTTP_200_OK)
+        for data in serializer.validated_data:
+            storeMenu=StoreMenu.objects.get(store=data['store'],item=data['item'])
+            if storeMenu.quantity-data['quantity'] < 0:
+                return Response(False, status=status.HTTP_400_BAD_REQUEST)
+        return Response(True,status=status.HTTP_200_OK)    
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -187,13 +188,15 @@ def updateQuantity(request):
     serializer =StoreMenuSerializer(data=request.data)
     cancel=bool(validation(request.GET['cancellation']))
     if serializer.is_valid():
-        storeMenu=StoreMenu.objects.get(store=serializer.validated_data['store'],item=serializer.validated_data['item'])
-        if cancel is not True:
-            storeMenu.quantity-=serializer.validated_data['quantity']
-            if storeMenu.quantity < 0:
-                return Response({"msg": "not enough quantity"}, status=status.HTTP_400_BAD_REQUEST)
-        else:
-            storeMenu.quantity+=serializer.validated_data['quantity']
-        storeMenu.save()
-        return Response({"msg": "Successful"}, status=status.HTTP_200_OK)
+        for data in serializer.validated_data:
+        
+            storeMenu=StoreMenu.objects.get(store=data['store'],item=data['item'])
+            if cancel is not True:
+                storeMenu.quantity-=data['quantity']
+                if storeMenu.quantity < 0:
+                    return Response({"msg": "not enough quantity"}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                storeMenu.quantity+=data['quantity']
+            storeMenu.save()
+            return Response({"msg": "Successful"}, status=status.HTTP_200_OK)
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
