@@ -8,7 +8,8 @@ from django.shortcuts import get_object_or_404
 from .serializers import StoreSerializer, StoreRatingsSerializer, ItemsSerializer, StoreMenuSerializer, ItemRateSerializer
 from .models import Store, StoreRating, items, StoreMenu
 from decimal import Decimal
-
+from django.http import JsonResponse
+import json
 
 
 # Create your views here.
@@ -171,11 +172,28 @@ def itemRating(request):
 
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
+def convert(b):
+   
+    c=[]
+    X_list=b.get('item'),
+    for i in range(len(X_list)):
+        #print(X_list[i][0].get('item_id'))
+        dict1={
+            
+            "item":X_list[i][0].get('item_id'),
+            "store":b.get('store_id'),
+            "quantity":X_list[i][0].get('qty')
+        }
+        c.append(dict1)
+    return c
 @api_view(['POST'])
 def validationQuantity(request):
-    serializer =StoreMenuSerializer(data=request.data, many=True)
+    serializer =StoreMenuSerializer(data=convert(request.data),many=True)
+    
+   # print(convert(request.data))
     if serializer.is_valid():
         for data in serializer.validated_data:
+            
             storeMenu=StoreMenu.objects.get(store=data['store'],item=data['item'])
             if storeMenu.quantity-data['quantity'] < 0:
                 return Response(False, status=status.HTTP_400_BAD_REQUEST)
@@ -185,7 +203,7 @@ def validationQuantity(request):
 
 @api_view(['PUT'])
 def updateQuantity(request):
-    serializer =StoreMenuSerializer(data=request.data)
+    serializer =StoreMenuSerializer(data=convert(request.data),many=True)
     cancel=bool(validation(request.GET['cancellation']))
     if serializer.is_valid():
         for data in serializer.validated_data:
@@ -200,3 +218,14 @@ def updateQuantity(request):
             storeMenu.save()
             return Response({"msg": "Successful"}, status=status.HTTP_200_OK)
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def orderPrepared(request):
+    orderId=request.data['orderId']
+    storeId=request.data['storeId']
+    d={
+        "orderId":orderId
+    }
+    c=json.dumps(d)
+    return Response(d,status=status.HTTP_200_OK)
+

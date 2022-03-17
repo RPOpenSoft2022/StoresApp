@@ -10,5 +10,9 @@ urlpatterns = [
     path('addMenuItem/',views.addMenuItem),
     path('itemRate/',views.itemRating),
     path('updateQuantity/',views.updateQuantity),
-    path('validation/',views.validationQuantity)
+    path('validation/',views.validationQuantity),
+    path('orderPrepared/',views.orderPrepared),
     ]
+
+
+#[{itemid,storeid,quantity}], [{item:{itemid,quantity},storeid}]

@@ -43,3 +43,6 @@ class StoreMenu(models.Model):
 class ItemRate(models.Model):
     itemId=models.ForeignKey(items, on_delete=models.CASCADE)
     rating=models.DecimalField(max_digits=2, decimal_places=1)
+
+
+    
