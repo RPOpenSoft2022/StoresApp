@@ -215,7 +215,7 @@ def updateQuantity(request):
 
     serializer =StoreMenuSerializer(data=convert(request.data),many=True)
     
-    print(convert(request.data))
+    #print(convert(request.data))
     if serializer.is_valid():
         for data in serializer.validated_data:
             storeMenu=StoreMenu.objects.get(store=data['store'],item=data['item'])
