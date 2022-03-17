@@ -203,8 +203,16 @@ def validationQuantity(request):
 
 @api_view(['PUT'])
 def updateQuantity(request):
+    a=validation(request.GET['cancellation'])
+    print(a)
+    if a=="true":
+       cancel=True
+    else:
+        cancel=False
+
     serializer =StoreMenuSerializer(data=convert(request.data),many=True)
-    cancel=bool(validation(request.GET['cancellation']))
+    
+    print(cancel)
     if serializer.is_valid():
         for data in serializer.validated_data:
         
