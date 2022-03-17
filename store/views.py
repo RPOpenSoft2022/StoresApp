@@ -175,16 +175,20 @@ def itemRating(request):
 def convert(b):
    
     c=[]
-    X_list=b.get('item'),
+    X_list=b.get('item-list'),
+    #print(X_list)
     for i in range(len(X_list)):
         #print(X_list[i][0].get('item_id'))
-        dict1={
+        for j in range(len(X_list[i])):
             
-            "item":X_list[i][0].get('item_id'),
-            "store":b.get('store_id'),
-            "quantity":X_list[i][0].get('qty')
-        }
-        c.append(dict1)
+            dict1={
+                
+                "item":X_list[i][j].get('item_id'),
+                "store":b.get('store_id'),
+                "quantity":X_list[i][j].get('qty')
+            }
+            c.append(dict1)
+    
     return c
 @api_view(['POST'])
 def validationQuantity(request):
@@ -193,7 +197,6 @@ def validationQuantity(request):
    # print(convert(request.data))
     if serializer.is_valid():
         for data in serializer.validated_data:
-            
             storeMenu=StoreMenu.objects.get(store=data['store'],item=data['item'])
             if storeMenu.quantity-data['quantity'] < 0:
                 return Response(False, status=status.HTTP_400_BAD_REQUEST)
@@ -204,7 +207,7 @@ def validationQuantity(request):
 @api_view(['PUT'])
 def updateQuantity(request):
     a=validation(request.GET['cancellation'])
-    print(a)
+    
     if a=="true":
        cancel=True
     else:
@@ -212,7 +215,7 @@ def updateQuantity(request):
 
     serializer =StoreMenuSerializer(data=convert(request.data),many=True)
     
-    print(cancel)
+    
     if serializer.is_valid():
         for data in serializer.validated_data:
         
