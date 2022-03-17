@@ -215,10 +215,9 @@ def updateQuantity(request):
 
     serializer =StoreMenuSerializer(data=convert(request.data),many=True)
     
-    
+    print(convert(request.data))
     if serializer.is_valid():
         for data in serializer.validated_data:
-        
             storeMenu=StoreMenu.objects.get(store=data['store'],item=data['item'])
             if cancel is not True:
                 storeMenu.quantity-=data['quantity']
@@ -227,7 +226,7 @@ def updateQuantity(request):
             else:
                 storeMenu.quantity+=data['quantity']
             storeMenu.save()
-            return Response({"msg": "Successful"}, status=status.HTTP_200_OK)
+        return Response({"msg": "Successful"}, status=status.HTTP_200_OK)
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
