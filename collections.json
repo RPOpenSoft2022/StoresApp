@@ -1,1 +1,450 @@
-{"client":"Thunder Client","collectionName":"stores","dateExported":"2022-03-15T14:15:21.392Z","version":"1.1","folders":[],"requests":[{"containerId":"","sortNum":10000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/stores/","url":"http://127.0.0.1:8000/stores/","method":"POST","modified":"2022-03-15T14:01:46.027Z","created":"2022-03-15T14:00:48.151Z","_id":"383a8a20-7603-448d-b55a-d9c8dce396d9","params":[],"body":{"type":"json","raw":"\n      {\n        \"menu\":[],\n      \"locLatitude\": \"22.000\",\n      \"locLongitude\": \"10.000\",\n      \"address\": \"tikka\",\n      \"name\": \"Tikka 2\",\n      \"availabilityTime\": \"9PM to 2AM\",\n      \"rating\": \"3.00\",\n      \"ratingCount\": 1,\n      \"contactInfo\": \"76576883333\"\n    }","form":[]},"tests":[]},{"containerId":"","sortNum":20000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/stores/","url":"http://127.0.0.1:8000/stores/","method":"GET","modified":"2022-03-15T14:02:09.600Z","created":"2022-03-15T13:57:52.946Z","_id":"835fea08-9d6e-4673-a106-af41b4ddea71","params":[],"tests":[]},{"containerId":"","sortNum":30000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/stores/2","url":"http://127.0.0.1:8000/stores/2","method":"GET","modified":"2022-03-15T14:03:06.726Z","created":"2022-03-15T14:02:57.455Z","_id":"1d838468-79f5-4657-b5c1-ee9137e250ae","params":[],"tests":[]},{"containerId":"","sortNum":40000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/stores/2","url":"http://127.0.0.1:8000/stores/2","method":"PUT","modified":"2022-03-15T14:04:13.224Z","created":"2022-03-15T14:04:04.983Z","_id":"946e7997-ae95-4253-a718-62ea10b1149a","params":[],"body":{"type":"json","raw":"{\n      \"id\": 2,\n      \"menu\": [],\n      \"locLatitude\": \"22.000\",\n      \"locLongitude\": \"11.000\",\n      \"address\": \"rp hall\",\n      \"name\": \"Rockey\",\n      \"availabilityTime\": \"8AM to 8PM\",\n      \"rating\": \"2.00\",\n      \"ratingCount\": 1,\n      \"contactInfo\": \"978368188\"\n    }","form":[]},"tests":[]},{"containerId":"","sortNum":50000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/items","url":"http://127.0.0.1:8000/items","method":"GET","modified":"2022-03-15T14:05:02.048Z","created":"2022-03-15T14:04:54.294Z","_id":"3130eff2-1b2b-456a-9faf-6503a342069d","params":[],"tests":[]},{"containerId":"","sortNum":60000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/items/","url":"http://127.0.0.1:8000/items/","method":"POST","modified":"2022-03-15T14:07:07.824Z","created":"2022-03-15T14:06:47.126Z","_id":"62f650d6-bc80-4f36-a0f5-c43fe4244373","params":[],"body":{"type":"json","raw":"{\n    \"name\": \"coffee\",\n    \"stores\": [],\n    \"IsVeg\": true,\n    \"price\": 21,\n    \"thumbnail\": \"dscvs\",\n    \"itemRating\": \"4.00\",\n    \"itemRatingCount\": 1\n  }","form":[]},"tests":[]},{"containerId":"","sortNum":70000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/items/chicken","url":"http://127.0.0.1:8000/items/chicken","method":"GET","modified":"2022-03-15T14:07:54.129Z","created":"2022-03-15T14:07:45.822Z","_id":"3501e895-2b79-4b99-aabc-462bfd7150f5","params":[],"tests":[]},{"containerId":"","sortNum":80000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/searchStorewithItem/?itemName=chicken","url":"http://127.0.0.1:8000/searchStorewithItem/?itemName=chicken","method":"GET","modified":"2022-03-15T14:09:07.872Z","created":"2022-03-15T14:08:58.819Z","_id":"337026d7-e46b-49bc-9019-168128bb3fc0","params":[{"name":"itemName","value":"chicken","isPath":false}],"tests":[]},{"containerId":"","sortNum":90000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/addMenuItem/","url":"http://127.0.0.1:8000/addMenuItem/","method":"POST","modified":"2022-03-15T14:11:44.332Z","created":"2022-03-15T14:11:35.334Z","_id":"89f4258b-a4f2-4a40-9cc6-93e9377add0e","params":[],"body":{"type":"json","raw":"{\n    \"item\":\"chicken\",\n    \"store\":1\n}","form":[]},"tests":[]},{"containerId":"","sortNum":100000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/addMenuItem/","url":"http://127.0.0.1:8000/addMenuItem/","method":"GET","modified":"2022-03-15T14:11:58.863Z","created":"2022-03-15T14:11:50.962Z","_id":"30f96bbb-05a0-4bec-b3cc-56bfc34b8f67","params":[],"body":{"type":"json","raw":"{\n    \"item\":\"chicken\",\n    \"store\":1\n}","form":[]},"tests":[]},{"containerId":"","sortNum":110000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/itemRate/","url":"http://127.0.0.1:8000/itemRate/","method":"POST","modified":"2022-03-15T14:13:23.767Z","created":"2022-03-15T14:13:14.886Z","_id":"6c11cb7b-b843-4863-bb2a-2dea570da9a3","params":[],"body":{"type":"json","raw":"{\n    \"itemId\":\"chicken\",\n    \"rating\":2\n}","form":[]},"tests":[]},{"containerId":"","sortNum":120000,"headers":[{"name":"Accept","value":"*/*"},{"name":"User-Agent","value":"Thunder Client (https://www.thunderclient.com)"}],"colId":"24c20c8a-d1fc-4a38-8cc4-cedb0832183b","name":"http://127.0.0.1:8000/store_rate/","url":"http://127.0.0.1:8000/store_rate/","method":"POST","modified":"2022-03-15T14:15:11.687Z","created":"2022-03-15T14:14:41.598Z","_id":"4e25b693-37ab-4db7-b609-8df167e745d2","params":[],"body":{"type":"json","raw":"{\n    \"storeId\":1,\n    \"rating\":2\n}","form":[]},"tests":[]}]}
+{
+	"info": {
+		"_postman_id": "fc596e49-9f55-4dda-8a7d-d8dec0c856b0",
+		"name": "Store_Collection_Updated",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/stores/?locLatitude=33&locLongitude=55",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/stores/?locLatitude=33&locLongitude=55",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"stores",
+						""
+					],
+					"query": [
+						{
+							"key": "locLatitude",
+							"value": "33"
+						},
+						{
+							"key": "locLongitude",
+							"value": "55"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/stores/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"menu\": [\r\n        \"chicken kabab\"\r\n    ],\r\n    \"locLatitude\": \"22.000\",\r\n    \"locLongitude\": \"10.000\",\r\n    \"address\": \"tikka\",\r\n    \"name\": \"carlos\",\r\n    \"availabilityTime\": \"9PM to 2AM\",\r\n    \"rating\": \"3.50\",\r\n    \"ratingCount\": 2,\r\n    \"contactInfo\": \"76576883333\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/stores/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"stores",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/stores/2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/stores/2",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"stores",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/items/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/items/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"items",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/items/chicken kabab/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/items/chicken kabab/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"items",
+						"chicken kabab",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/items/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"chicken lollipop\",\r\n    \"IsVeg\": false,\r\n    \"price\": 1235,\r\n    \"thumbnail\": \"sadafgsfg.jpg\",\r\n    \"itemRating\": \"2.00\",\r\n    \"itemRatingCount\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/items/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"items",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/searchStorewithItem/?itemName=chicken lollipop",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"chicken lollipop\",\r\n    \"IsVeg\": false,\r\n    \"price\": 1235,\r\n    \"thumbnail\": \"sadafgsfg.jpg\",\r\n    \"itemRating\": \"2.00\",\r\n    \"itemRatingCount\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/searchStorewithItem/?itemName=chicken lollipop",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"searchStorewithItem",
+						""
+					],
+					"query": [
+						{
+							"key": "itemName",
+							"value": "chicken lollipop"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/searchStorewithItem/?itemName=chicken kabab",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"chicken lollipop\",\r\n    \"IsVeg\": false,\r\n    \"price\": 1235,\r\n    \"thumbnail\": \"sadafgsfg.jpg\",\r\n    \"itemRating\": \"2.00\",\r\n    \"itemRatingCount\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/searchStorewithItem/?itemName=chicken kabab",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"searchStorewithItem",
+						""
+					],
+					"query": [
+						{
+							"key": "itemName",
+							"value": "chicken kabab"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/addMenuItem/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"quantity\": 5,\r\n    \"item\": \"chicken lollipop\",\r\n    \"store\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/addMenuItem/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"addMenuItem",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/itemRate/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"itemId\": \"qwerty\",\r\n    \"rating\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/itemRate/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"itemRate",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/store_rate/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"storeId\": 1,\r\n    \"rating\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/store_rate/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"store_rate",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/validation/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item-list\": [\r\n        {\r\n            \"item_id\": \"qwerty\",\r\n            \"qty\": 2\r\n        }\r\n    ],\r\n    \"store_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/validation/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"validation",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/updateQuantity/?cancellation=false",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"item-list\": [\r\n        {\r\n            \"item_id\": \"qwerty\",\r\n            \"qty\": 2\r\n        }\r\n    ],\r\n    \"store_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/updateQuantity/?cancellation=false",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"updateQuantity",
+						""
+					],
+					"query": [
+						{
+							"key": "cancellation",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/orderPrepared/",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderId\": 1,\r\n    \"storeId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/orderPrepared/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"orderPrepared",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

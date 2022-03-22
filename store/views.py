@@ -233,9 +233,5 @@ def updateQuantity(request):
 def orderPrepared(request):
     orderId=request.data['orderId']
     storeId=request.data['storeId']
-    d={
-        "orderId":orderId
-    }
-    c=json.dumps(d)
-    return Response(d,status=status.HTTP_200_OK)
+    return JsonResponse({"orderId":orderId})
 
