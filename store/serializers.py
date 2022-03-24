@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from .models import Store, StoreRating, items, StoreMenu, ItemRate
+from .models import Store, StoreRating, Item, StoreMenu, ItemRate
 
 class StoreSerializer(serializers.ModelSerializer):
-    menu = serializers.PrimaryKeyRelatedField(queryset=items.objects.all(), many=True)
+    menu = serializers.PrimaryKeyRelatedField(queryset=Item.objects.all(), many=True)
     class Meta:
         model = Store
         fields = '__all__'
@@ -10,7 +10,7 @@ class StoreSerializer(serializers.ModelSerializer):
 class ItemsSerializer(serializers.ModelSerializer):
     stores = StoreSerializer(many=True, read_only=True)
     class Meta:
-        model = items
+        model = Item
         fields='__all__'
 
 

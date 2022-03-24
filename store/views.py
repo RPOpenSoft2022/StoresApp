@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from .serializers import StoreSerializer, StoreRatingsSerializer, ItemsSerializer, StoreMenuSerializer, ItemRateSerializer
-from .models import Store, StoreRating, items, StoreMenu
+from .models import Store, StoreRating, Item, StoreMenu
 from decimal import Decimal
 from django.http import JsonResponse
 import json
@@ -65,12 +65,12 @@ def storeDetail(request, pk):
 # @permission_classes([IsAuthenticatedOrReadOnly])
 def itemList(request):
     if request.method == 'GET':
-        item=items.objects.all()
-        serializer=ItemsSerializer(item,many=True)
+        item = Item.objects.all()
+        serializer = ItemsSerializer(item,many=True)
         return Response(serializer.data)
 
     if request.method == 'POST':
-        serializer=ItemsSerializer(data=request.data)
+        serializer = ItemsSerializer(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -84,22 +84,22 @@ def itemList(request):
 def itemDetail(request,itemname):
 
     if request.method == 'GET':
-        item=items.objects.get(name=itemname)
-        serializer=ItemsSerializer(item,many=False)
+        item = Item.objects.get(name=itemname)
+        serializer = ItemsSerializer(item,many=False)
         return Response(serializer.data)
 
     elif request.method == 'DELETE':
-        item = items.objects.get(name=itemname)
+        item = Item.objects.get(name=itemname)
         item.delete()
-        return Response({"messages":"Successful"},status=status.HTTP_200_OK)
+        return Response({"messages": "Successful"},status=status.HTTP_200_OK)
 
     elif request.method == 'PUT':
-        item=items.objects.get(name=itemname)
-        serializer=ItemsSerializer(instance=item,data=request.data)
+        item = Item.objects.get(name=itemname)
+        serializer = ItemsSerializer(instance=item,data=request.data)
 
         if serializer.is_valid():
             serializer.save()
-            return Response({"messages":"Successful"},status=status.HTTP_200_OK)
+            return Response({"messages": "Successful"},status=status.HTTP_200_OK)
 
 def validation(str):
     str=str.strip()
@@ -126,11 +126,11 @@ def storeRate(request):
 @api_view(['GET','POST'])
 # @permission_classes([IsAuthenticatedOrReadOnly])
 def storeItem(request):
-    foodName=validation(request.GET['itemName'])
-    item=items.objects.get(name=foodName)
-    storeItem=item.stores.all()
-    serializer=StoreSerializer(storeItem,many=True)
-    storeitem=[]
+    foodName = validation(request.GET['itemName'])
+    item = Item.objects.get(name=foodName)
+    storeItem = item.stores.all()
+    serializer = StoreSerializer(storeItem,many=True)
+    storeitem = []
 
     for i in serializer.data:
         storeitem.append(i['name'])
