@@ -10,7 +10,7 @@ from .models import Store, StoreRating, items, StoreMenu
 from decimal import Decimal
 from django.http import JsonResponse
 import json
-
+from rest_framework.pagination import PageNumberPagination
 
 # Create your views here.
 @api_view([ 'GET', 'POST'])
@@ -27,11 +27,14 @@ def storeList(request):
     elif request.method == 'GET':
         # loc_lat = request.GET['locLatitude']
         # loc_long = request.GET['locLongitude']
-        stores = list(Store.objects.all())
         # stores = sorted(stores, key=lambda store: abs(store.locLatitude - Decimal(loc_lat)) +
         #                                           abs(store.locLongitude - Decimal(loc_long)))
-        serializer = StoreSerializer(stores, many=True)
-        return Response({"stores": serializer.data}, status=status.HTTP_200_OK)
+        paginator = PageNumberPagination()
+        paginator.page_size = 10
+        stores=list(Store.objects.all())
+        resultpage = paginator.paginate_queryset(stores, request)
+        serializer = StoreSerializer(resultpage, many=True)
+        return paginator.get_paginated_response({"stores": serializer.data})
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
