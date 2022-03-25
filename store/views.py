@@ -239,12 +239,15 @@ def orderPrepared(request):
     return JsonResponse({"orderId":orderId})
 
 @api_view(['POST'])
-def totalOrderCost(request):
+def orderSummary(request):
     print(30*'-')
     print(request.data)
     print(30*'-')
     items = json.loads(request.data)
     cost = 0
     for item in items:
-        cost += Item.objects.get(id=item["item"]).price * item["quantity"]
-    return JsonResponse({"total_cost": cost})
+        obj = Item.objects.get(id=item["item"])
+        item['name'] = obj.name
+        item['item_price'] = obj.price
+        cost += obj.price * item["quantity"]
+    return JsonResponse({"item_list": items, "total_cost": cost})

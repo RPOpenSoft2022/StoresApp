@@ -12,7 +12,7 @@ urlpatterns = [
     path('updateQuantity/',views.updateQuantity),
     path('verify_order/',views.validationQuantity),
     path('orderPrepared/',views.orderPrepared),
-    path('total_order_cost/', views.totalOrderCost),
+    path('order_summary/', views.orderSummary),
     ]
 
 
