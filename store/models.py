@@ -1,4 +1,4 @@
-from asyncio.windows_events import NULL
+#from asyncio.windows_events import NULL
 from django.db import models
 
 
@@ -13,9 +13,6 @@ class Item(models.Model):
 
     def __str__(self):
         return self.name
-
-    class JSONAPIMeta:
-        resource_name = 'items'
 
 
 class Store(models.Model):

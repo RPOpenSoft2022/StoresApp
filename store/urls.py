@@ -10,8 +10,9 @@ urlpatterns = [
     path('addMenuItem/',views.addMenuItem),
     path('itemRate/',views.itemRating),
     path('updateQuantity/',views.updateQuantity),
-    path('validation/',views.validationQuantity),
+    path('verify_order/',views.validationQuantity),
     path('orderPrepared/',views.orderPrepared),
+    path('total_order_cost/', views.totalOrderCost),
     ]
 
 

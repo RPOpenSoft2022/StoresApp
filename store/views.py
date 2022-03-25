@@ -173,21 +173,24 @@ def itemRating(request):
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 def convert(b):
-   
+    
     c=[]
-    X_list=b.get('item-list'),
-    #print(X_list)
-    for i in range(len(X_list)):
+    # X_list=json.loads(b['item_list'][0]),
+    X_list = b['item_list']
+    print(X_list)
+
+    X_list = json.loads(X_list)
+    # print(json.loads(X_list[0]))
+    for i in X_list:
         #print(X_list[i][0].get('item_id'))
-        for j in range(len(X_list[i])):
+        # for j in range(len(X_list[i])):            
+        dict1={
             
-            dict1={
-                
-                "item":X_list[i][j].get('item_id'),
-                "store":b.get('store_id'),
-                "quantity":X_list[i][j].get('qty')
-            }
-            c.append(dict1)
+            "item":i['item'],
+            "store":b['store_id'],
+            "quantity":i['quantity']
+        }
+        c.append(dict1)
     
     return c
 @api_view(['POST'])
@@ -199,8 +202,8 @@ def validationQuantity(request):
         for data in serializer.validated_data:
             storeMenu=StoreMenu.objects.get(store=data['store'],item=data['item'])
             if storeMenu.quantity-data['quantity'] < 0:
-                return Response(False, status=status.HTTP_400_BAD_REQUEST)
-        return Response(True,status=status.HTTP_200_OK)    
+                return Response({"msg":'false'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"msg":'true'},status=status.HTTP_200_OK)    
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -235,3 +238,13 @@ def orderPrepared(request):
     storeId=request.data['storeId']
     return JsonResponse({"orderId":orderId})
 
+@api_view(['POST'])
+def totalOrderCost(request):
+    print(30*'-')
+    print(request.data)
+    print(30*'-')
+    items = json.loads(request.data)
+    cost = 0
+    for item in items:
+        cost += Item.objects.get(id=item["item"]).price * item["quantity"]
+    return JsonResponse({"total_cost": cost})
