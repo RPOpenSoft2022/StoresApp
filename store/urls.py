@@ -11,7 +11,6 @@ urlpatterns = [
     path('itemRate/',views.itemRating),
     path('updateQuantity/',views.updateQuantity),
     path('verify_order/',views.validationQuantity),
-    path('orderPrepared/',views.orderPrepared),
     path('order_summary/', views.orderSummary),
     ]
 

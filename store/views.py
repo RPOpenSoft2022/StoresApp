@@ -10,6 +10,9 @@ from .models import Store, StoreRating, Item, StoreMenu
 from decimal import Decimal
 from django.http import JsonResponse
 import json
+from .interconnect import send_request_post, send_request_get
+from rest_framework.exceptions import ValidationError
+from store_ms.settings import DELIVERY_MICROSERVICE_URL, STORES_MICROSERVICE_URL, USERS_MICROSERVICE_URL
 
 
 # Create your views here.
@@ -203,7 +206,7 @@ def validationQuantity(request):
             storeMenu=StoreMenu.objects.get(store=data['store'],item=data['item'])
             if storeMenu.quantity-data['quantity'] < 0:
                 return Response({"msg":'false'}, status=status.HTTP_400_BAD_REQUEST)
-        return Response({"msg":'true'},status=status.HTTP_200_OK)    
+        return Response({"msg":'true', "store_name":storeMenu.store.name},status=status.HTTP_200_OK)    
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -232,18 +235,13 @@ def updateQuantity(request):
         return Response({"msg": "Successful"}, status=status.HTTP_200_OK)
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['POST'])
-def orderPrepared(request):
-    orderId=request.data['orderId']
-    storeId=request.data['storeId']
-    return JsonResponse({"orderId":orderId})
 
 @api_view(['POST'])
 def orderSummary(request):
     print(30*'-')
-    print(request.data)
+    print(request.data['item_list'])
     print(30*'-')
-    items = json.loads(request.data)
+    items = json.loads(request.data['item_list'])
     cost = 0
     for item in items:
         obj = Item.objects.get(id=item["item"])

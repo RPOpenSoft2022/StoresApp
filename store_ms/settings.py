@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-^h*-#b^twpmw=+_!^-wzd=lswebo8-+=y8h*kfd*gs0he80=5c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # URLS for the microservices
 ORDERS_MICROSERVICE_URL = os.getenv('ORDERS_MICROSERVICE_URL')
