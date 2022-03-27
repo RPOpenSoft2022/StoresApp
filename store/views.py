@@ -1,3 +1,4 @@
+from functools import partial
 from unicodedata import name
 from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
@@ -48,7 +49,7 @@ def storeDetail(request, pk):
 
     elif request.method == 'PUT':
         store = Store.objects.get(id=pk)
-        serializer = StoreSerializer(store, data=request.data)
+        serializer = StoreSerializer(store, data=request.data, partial=True)
 
         if serializer.is_valid():
             serializer.save()

@@ -42,6 +42,9 @@ class StoreMenu(models.Model):
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=0)
 
+    def __str__(self):
+        return self.store.name + " - " + self.item.name + "(" + str(self.quantity) +")"
+
 
 class ItemRate(models.Model):
     itemId = models.ForeignKey(Item, on_delete=models.CASCADE)
