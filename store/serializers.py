@@ -10,14 +10,14 @@ class StoreSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         menu = []
         for item in instance.menu.all():
-            menu.append({"item_id": item.id,"item_name": item.name, "isVeg": item.IsVeg, "price": item.price, "thumbnail": item.thumbnail, "itemRating": item.itemRating, "itemRatingCount": item.itemRatingCount})
+            menu.append({"id": item.id,"name": item.name, "isVeg": item.IsVeg, "price": item.price, "thumbnail": item.thumbnail, "itemRating": item.itemRating, "itemRatingCount": item.itemRatingCount})
         return {
-            "store_id": instance.id,
+            "id": instance.id,
             "menu": menu,
             "locLatitude": instance.locLatitude,
             "locLongitude": instance.locLongitude,
             "address": instance.address,
-            "store_name": instance.name,
+            "name": instance.name,
             "availabilityTime": instance.availabilityTime,
             "rating": instance.rating,
             "ratingCount": instance.ratingCount,

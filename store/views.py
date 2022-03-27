@@ -19,8 +19,9 @@ from store_ms.settings import DELIVERY_MICROSERVICE_URL, STORES_MICROSERVICE_URL
 @api_view([ 'GET', 'POST'])
 def storeList(request):
     if request.method == 'POST':
+        print(request.data)
         serializer = StoreSerializer(data=request.data)
-
+        
         if serializer.is_valid():
             serializer.save()
             return Response({"msg": "Successful"}, status=status.HTTP_200_OK)
@@ -98,6 +99,7 @@ def itemDetail(request,pk):
 
     elif request.method == 'PUT':
         item = Item.objects.get(id=pk)
+        print(item.ratingCount)
         serializer = ItemsSerializer(instance=item,data=request.data, partial=True)
 
         if serializer.is_valid():
