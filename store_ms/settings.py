@@ -27,7 +27,6 @@ SECRET_KEY = 'django-insecure-^h*-#b^twpmw=+_!^-wzd=lswebo8-+=y8h*kfd*gs0he80=5c
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CORS_ORIGIN_ALLOW_ALL = True
 
 # URLS for the microservices
 ORDERS_MICROSERVICE_URL = os.getenv('ORDERS_MICROSERVICE_URL')
@@ -49,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'store_ms.urls'
@@ -119,6 +121,9 @@ REST_FRAMEWORK = {
     )
 }
 
+
+CORS_ORIGIN_ALLOW_ALL = True
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -141,3 +146,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# CORS_ALLOW_HEADERS = ('content-disposition', 'accept-encoding',
+#                       'content-type', 'accept', 'origin', 'authorization')
