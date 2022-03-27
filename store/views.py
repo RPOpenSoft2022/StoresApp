@@ -84,26 +84,28 @@ def itemList(request):
 
 @api_view(['GET','PUT','DELETE'])
 # @permission_classes([IsAuthenticatedOrReadOnly])
-def itemDetail(request,itemname):
+def itemDetail(request,pk):
 
     if request.method == 'GET':
-        item = Item.objects.get(name=itemname)
+        item = Item.objects.get(id=pk)
         serializer = ItemsSerializer(item,many=False)
         return Response(serializer.data)
 
     elif request.method == 'DELETE':
-        item = Item.objects.get(name=itemname)
+        item = Item.objects.get(id=pk)
         item.delete()
         return Response({"messages": "Successful"},status=status.HTTP_200_OK)
 
     elif request.method == 'PUT':
-        item = Item.objects.get(name=itemname)
-        serializer = ItemsSerializer(instance=item,data=request.data)
+        item = Item.objects.get(id=pk)
+        serializer = ItemsSerializer(instance=item,data=request.data, partial=True)
 
         if serializer.is_valid():
             serializer.save()
             return Response({"messages": "Successful"},status=status.HTTP_200_OK)
-
+        else:
+            print(serializer.error_messages)
+            return Response({"messages": "Failure"},status=status.HTTP_400_BAD_REQUEST)
 def validation(str):
     str=str.strip()
     str=str.lower()

@@ -6,9 +6,26 @@ class StoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Store
         fields = '__all__'
+    
+    def to_representation(self, instance):
+        menu = []
+        for item in instance.menu.all():
+            menu.append({"item_id": item.id,"item_name": item.name, "isVeg": item.IsVeg, "price": item.price, "thumbnail": item.thumbnail, "itemRating": item.itemRating, "itemRatingCount": item.itemRatingCount})
+        return {
+            "store_id": instance.id,
+            "menu": menu,
+            "locLatitude": instance.locLatitude,
+            "locLongitude": instance.locLongitude,
+            "address": instance.address,
+            "store_name": instance.name,
+            "availabilityTime": instance.availabilityTime,
+            "rating": instance.rating,
+            "ratingCount": instance.ratingCount,
+            "contactInfo": instance.contactInfo
+        }
+
 
 class ItemsSerializer(serializers.ModelSerializer):
-    stores = StoreSerializer(many=True, read_only=True)
     class Meta:
         model = Item
         fields='__all__'
