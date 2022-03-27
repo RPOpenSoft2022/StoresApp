@@ -7,7 +7,7 @@ class Item(models.Model):
     name = models.CharField(max_length=50)
     IsVeg = models.BooleanField(default=True)
     price = models.IntegerField()
-    thumbnail = models.CharField(max_length=50)
+    thumbnail = models.TextField()
     itemRating = models.DecimalField(max_digits=3, decimal_places=2)
     itemRatingCount = models.IntegerField(default=1)
 
