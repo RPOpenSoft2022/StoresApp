@@ -213,27 +213,18 @@ def validationQuantity(request):
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT'])
+@api_view(['POST'])
 def updateQuantity(request):
-    a=validation(request.GET['cancellation'])
-    
-    if a=="true":
-       cancel=True
-    else:
-        cancel=False
-
     serializer =StoreMenuSerializer(data=convert(request.data),many=True)
     
     #print(convert(request.data))
     if serializer.is_valid():
         for data in serializer.validated_data:
             storeMenu=StoreMenu.objects.get(store=data['store'],item=data['item'])
-            if cancel is not True:
-                storeMenu.quantity-=data['quantity']
-                if storeMenu.quantity < 0:
-                    return Response({"msg": "not enough quantity"}, status=status.HTTP_400_BAD_REQUEST)
-            else:
-                storeMenu.quantity+=data['quantity']
+            storeMenu.quantity-=data['quantity']
+            if storeMenu.quantity < 0:
+                return Response({"msg": "not enough quantity"}, status=status.HTTP_400_BAD_REQUEST)
+            print(storeMenu)
             storeMenu.save()
         return Response({"msg": "Successful"}, status=status.HTTP_200_OK)
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
