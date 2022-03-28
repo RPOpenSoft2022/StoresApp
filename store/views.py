@@ -186,15 +186,13 @@ def convert(b):
     # X_list=json.loads(b['item_list'][0]),
     X_list = b['item_list']
     print(X_list)
-
-    X_list = json.loads(X_list)
     # print(json.loads(X_list[0]))
     for i in X_list:
         #print(X_list[i][0].get('item_id'))
         # for j in range(len(X_list[i])):            
         dict1={
             
-            "item":i['item'],
+            "item":i['id'],
             "store":b['store_id'],
             "quantity":i['quantity']
         }
@@ -246,10 +244,10 @@ def orderSummary(request):
     print(30*'-')
     print(request.data['item_list'])
     print(30*'-')
-    items = json.loads(request.data['item_list'])
+    items = request.data['item_list']
     cost = 0
     for item in items:
-        obj = Item.objects.get(id=item["item"])
+        obj = Item.objects.get(id=item["id"])
         item['name'] = obj.name
         item['item_price'] = obj.price
         cost += obj.price * item["quantity"]
