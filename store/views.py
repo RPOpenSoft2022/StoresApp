@@ -240,6 +240,6 @@ def orderSummary(request):
     for item in items:
         obj = Item.objects.get(id=item["id"])
         item['name'] = obj.name
-        item['item_price'] = obj.price
+        item['price'] = obj.price
         cost += obj.price * item["quantity"]
     return JsonResponse({"item_list": items, "total_cost": cost})
