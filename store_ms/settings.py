@@ -35,8 +35,6 @@ USERS_MICROSERVICE_URL = os.getenv('USERS_MICROSERVICE_URL')
 DELIVERY_MICROSERVICE_URL = os.getenv('DELIVERY_MICROSERVICE_URL')
 
 
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -89,8 +87,12 @@ WSGI_APPLICATION = 'store_ms.wsgi.application'
 import os
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3"))
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DATABASE_NAME'),
+        'USER': os.getenv('DATABASE_USER'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -120,6 +122,28 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+
+CORS_ALLOW_METHODS = [
+    "DELETE",
+    "GET",
+    "OPTIONS",
+    "PATCH",
+    "POST",
+    "PUT",
+]
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
+CORS_ALLOW_CREDENTIALS=True
+
+from corsheaders.defaults import default_headers
+
+CORS_ALLOW_HEADERS = list(default_headers)
 
 
 CORS_ORIGIN_ALLOW_ALL = True
