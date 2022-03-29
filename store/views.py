@@ -13,9 +13,10 @@ from django.http import JsonResponse
 import json
 from .interconnect import send_request_post, send_request_get
 from rest_framework.exceptions import ValidationError
-from store_ms.settings import DELIVERY_MICROSERVICE_URL, STORES_MICROSERVICE_URL, USERS_MICROSERVICE_URL
-
-
+from store_ms.settings import DELIVERY_MICROSERVICE_URL, STORES_MICROSERVICE_URL, USERS_MICROSERVICE_URL, SECRET_KEY
+import jwt
+from corsheaders.defaults import default_headers
+import requests
 # Create your views here.
 @api_view([ 'GET', 'POST'])
 def storeList(request):
@@ -243,3 +244,9 @@ def orderSummary(request):
         item['price'] = obj.price
         cost += obj.price * item["quantity"]
     return JsonResponse({"item_list": items, "total_cost": cost})
+
+@api_view(['GET'])
+def ownerid(request):
+    print(request.headers)
+    ownerId = jwt.decode(request.headers['Authorization'].split()[-1], SECRET_KEY, algorithms=["HS256"])['id']
+    return Response(ownerId,status=status.HTTP_200_OK)
