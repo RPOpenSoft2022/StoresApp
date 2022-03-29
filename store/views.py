@@ -17,6 +17,8 @@ from store_ms.settings import DELIVERY_MICROSERVICE_URL, STORES_MICROSERVICE_URL
 import jwt
 from corsheaders.defaults import default_headers
 import requests
+
+from store import serializers
 # Create your views here.
 @api_view([ 'GET', 'POST'])
 def storeList(request):
@@ -245,8 +247,8 @@ def orderSummary(request):
         cost += obj.price * item["quantity"]
     return JsonResponse({"item_list": items, "total_cost": cost})
 
-@api_view(['GET'])
-def Storeid(request):
-    print(request.headers)
-    ownerId = jwt.decode(request.headers['Authorization'].split()[-1], SECRET_KEY, algorithms=["HS256"])['id']
-    return Response(ownerId,status=status.HTTP_200_OK)
+@api_view(['POST'])
+def store_manager(request):
+    store = Store.objects.get(ownerId=request.data['user_id'])
+    serializer = StoreSerializer(store)
+    return Response(serializer.data,status=status.HTTP_200_OK)
