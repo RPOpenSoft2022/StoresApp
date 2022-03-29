@@ -246,7 +246,7 @@ def orderSummary(request):
     return JsonResponse({"item_list": items, "total_cost": cost})
 
 @api_view(['GET'])
-def ownerid(request):
+def Storeid(request):
     print(request.headers)
     ownerId = jwt.decode(request.headers['Authorization'].split()[-1], SECRET_KEY, algorithms=["HS256"])['id']
     return Response(ownerId,status=status.HTTP_200_OK)

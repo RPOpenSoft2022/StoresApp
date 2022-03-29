@@ -12,7 +12,7 @@ urlpatterns = [
     path('updateQuantity/',views.updateQuantity),
     path('verify_order/',views.validationQuantity),
     path('order_summary/', views.orderSummary),
-    path('ownerid/',views.ownerid)
+    path('Storeid/',views.Storeid)
     ]
 
 
