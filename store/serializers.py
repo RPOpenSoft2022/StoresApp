@@ -21,7 +21,8 @@ class StoreSerializer(serializers.ModelSerializer):
             "availabilityTime": instance.availabilityTime,
             "rating": instance.rating,
             "ratingCount": instance.ratingCount,
-            "contactInfo": instance.contactInfo
+            "contactInfo": instance.contactInfo,
+            "owner_id": instance.ownerId
         }
 
 
