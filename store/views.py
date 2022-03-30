@@ -249,6 +249,9 @@ def orderSummary(request):
 
 @api_view(['POST'])
 def store_manager(request):
-    store = Store.objects.get(ownerId=request.data['user_id'])
+    try:
+        store = Store.objects.get(ownerId=request.data['user_id'])
+    except:
+        raise ValidationError({"message": "Matching store does not exist"})
     serializer = StoreSerializer(store)
     return Response(serializer.data,status=status.HTTP_200_OK)
