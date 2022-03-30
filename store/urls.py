@@ -12,6 +12,7 @@ urlpatterns = [
     path('updateQuantity/',views.updateQuantity),
     path('verify_order/',views.validationQuantity),
     path('order_summary/', views.orderSummary),
+    path('store_manager/',views.store_manager)
     ]
 
 

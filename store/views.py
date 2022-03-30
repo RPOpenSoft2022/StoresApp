@@ -13,9 +13,12 @@ from django.http import JsonResponse
 import json
 from .interconnect import send_request_post, send_request_get
 from rest_framework.exceptions import ValidationError
-from store_ms.settings import DELIVERY_MICROSERVICE_URL, STORES_MICROSERVICE_URL, USERS_MICROSERVICE_URL
+from store_ms.settings import DELIVERY_MICROSERVICE_URL, STORES_MICROSERVICE_URL, USERS_MICROSERVICE_URL, SECRET_KEY
+import jwt
+from corsheaders.defaults import default_headers
+import requests
 
-
+from store import serializers
 # Create your views here.
 @api_view([ 'GET', 'POST'])
 def storeList(request):
@@ -186,15 +189,13 @@ def convert(b):
     # X_list=json.loads(b['item_list'][0]),
     X_list = b['item_list']
     print(X_list)
-
-    X_list = json.loads(X_list)
     # print(json.loads(X_list[0]))
     for i in X_list:
         #print(X_list[i][0].get('item_id'))
         # for j in range(len(X_list[i])):            
         dict1={
             
-            "item":i['item'],
+            "item":i['id'],
             "store":b['store_id'],
             "quantity":i['quantity']
         }
@@ -215,27 +216,18 @@ def validationQuantity(request):
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT'])
+@api_view(['POST'])
 def updateQuantity(request):
-    a=validation(request.GET['cancellation'])
-    
-    if a=="true":
-       cancel=True
-    else:
-        cancel=False
-
     serializer =StoreMenuSerializer(data=convert(request.data),many=True)
     
     #print(convert(request.data))
     if serializer.is_valid():
         for data in serializer.validated_data:
             storeMenu=StoreMenu.objects.get(store=data['store'],item=data['item'])
-            if cancel is not True:
-                storeMenu.quantity-=data['quantity']
-                if storeMenu.quantity < 0:
-                    return Response({"msg": "not enough quantity"}, status=status.HTTP_400_BAD_REQUEST)
-            else:
-                storeMenu.quantity+=data['quantity']
+            storeMenu.quantity-=data['quantity']
+            if storeMenu.quantity < 0:
+                return Response({"msg": "not enough quantity"}, status=status.HTTP_400_BAD_REQUEST)
+            print(storeMenu)
             storeMenu.save()
         return Response({"msg": "Successful"}, status=status.HTTP_200_OK)
     return Response({"msg": "Failure", "error": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
@@ -246,11 +238,20 @@ def orderSummary(request):
     print(30*'-')
     print(request.data['item_list'])
     print(30*'-')
-    items = json.loads(request.data['item_list'])
+    items = request.data['item_list']
     cost = 0
     for item in items:
-        obj = Item.objects.get(id=item["item"])
+        obj = Item.objects.get(id=item["id"])
         item['name'] = obj.name
-        item['item_price'] = obj.price
+        item['price'] = obj.price
         cost += obj.price * item["quantity"]
     return JsonResponse({"item_list": items, "total_cost": cost})
+
+@api_view(['POST'])
+def store_manager(request):
+    try:
+        store = Store.objects.get(ownerId=request.data['user_id'])
+    except:
+        raise ValidationError({"message": "Matching store does not exist"})
+    serializer = StoreSerializer(store)
+    return Response(serializer.data,status=status.HTTP_200_OK)

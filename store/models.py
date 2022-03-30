@@ -27,7 +27,7 @@ class Store(models.Model):
     ratingCount = models.IntegerField(default=1)
     contactInfo = models.CharField(max_length=50)
     menu = models.ManyToManyField(Item, through='StoreMenu', related_name="stores")
-
+    ownerId=models.IntegerField()
     def __str__(self):
         return self.name
 
