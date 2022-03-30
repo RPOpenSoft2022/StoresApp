@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: storesapp-lb
+  labels:
+    app: storesapp
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: storesapp
